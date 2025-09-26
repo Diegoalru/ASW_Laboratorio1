@@ -1,0 +1,96 @@
+<!-- Primera tabla: Detalles de Medicamentos -->
+<div class="mt-10">
+  <h3 class="text-xl font-bold mb-4">Detalles de Medicamentos</h3>
+  @if (medications().length === 0) {
+    <div class="bg-white rounded-xl shadow-sm border border-gray-300 p-8 text-center">
+      <span class="material-symbols-outlined text-4xl text-gray-400 mb-2">medication</span>
+      <p class="text-gray-500">No hay medicamentos registrados aún.</p>
+      <p class="text-sm text-gray-400">Completa el formulario arriba para agregar medicamentos.</p>
+    </div>
+  } @else {
+    <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-300">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-gray-50 text-xs uppercase tracking-wider">
+        <tr>
+          <th class="px-6 py-3 font-medium" scope="col">ID</th>
+          <th class="px-6 py-3 font-medium" scope="col">Nombre</th>
+          <th class="px-6 py-3 font-medium" scope="col">Fecha</th>
+          <th class="px-6 py-3 font-medium" scope="col">Costo</th>
+          <th class="px-6 py-3 font-medium" scope="col">Cantidad</th>
+          <th class="px-6 py-3 font-medium" scope="col">Ubicación</th>
+          <th class="px-6 py-3 font-medium text-right" scope="col">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (med of medications(); track med.id) {
+            <tr class="border-b border-gray-200">
+              <td class="px-6 py-4 font-medium">{{ med.id }}</td>
+              <td class="px-6 py-4 font-medium">{{ med.name }}</td>
+              <td class="px-6 py-4 text-gray-600">{{ med.date | date:'dd/MM/yyyy' }}</td>
+              <td class="px-6 py-4 text-gray-600">{{ formatPrice(med.cost) }}</td>
+              <td class="px-6 py-4 text-gray-600">{{ med.quantity }}</td>
+              <td class="px-6 py-4 text-gray-600">{{ getLocationName(med.location) }}</td>
+              <td class="px-6 py-4 text-right font-medium">{{ formatPrice(med.cost * med.quantity) }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
+
+<!-- Segunda tabla: Inventario por Ubicación -->
+<div class="mt-10">
+  <h3 class="text-xl font-bold mb-4">Inventario por Ubicación</h3>
+
+  @if (medications().length === 0) {
+    <div class="bg-white rounded-xl shadow-sm border border-gray-300 p-8 text-center">
+      <span class="material-symbols-outlined text-4xl text-gray-400 mb-2">location_on</span>
+      <p class="text-gray-500">No hay inventario en ninguna ubicación.</p>
+      <p class="text-sm text-gray-400">Los medicamentos registrados aparecerán aquí organizados por ubicación.</p>
+    </div>
+  } @else {
+    <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-300">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-gray-50 text-xs uppercase tracking-wider">
+        <tr>
+          <th class="px-6 py-3 font-medium" scope="col">Ubicación</th>
+          <th class="px-6 py-3 font-medium" scope="col">Medicamentos</th>
+          <th class="px-6 py-3 font-medium" scope="col">Cantidad Total</th>
+          <th class="px-6 py-3 font-medium" scope="col">Valor Total</th>
+          <th class="px-6 py-3 font-medium" scope="col">Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (inventory of locationInventory(); track inventory.location.id) {
+            <tr class="border-b border-gray-200">
+              <td class="px-6 py-4 font-medium">{{ inventory.location.name }}</td>
+              <td class="px-6 py-4 text-gray-600">
+                @if (inventory.medications.length > 0) {
+                  <div class="space-y-1">
+                    @for (med of inventory.medications; track med.id) {
+                      <div class="text-xs">
+                        {{ med.name }} ({{ med.quantity }})
+                      </div>
+                    }
+                  </div>
+                } @else {
+                  <span class="text-xs text-gray-400">Sin medicamentos</span>
+                }
+              </td>
+              <td class="px-6 py-4 text-gray-600">{{ inventory.totalQuantity }}</td>
+              <td class="px-6 py-4 text-gray-600">{{ formatPrice(inventory.totalValue) }}</td>
+              <td class="px-6 py-4">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                  [class]="getStatusClass(inventory.status)">
+                  {{ inventory.status }}
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

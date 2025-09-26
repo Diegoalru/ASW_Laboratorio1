@@ -1,0 +1,73 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-4">Listado de Medicamentos</h1>
+  <p class="text-gray-600 mb-8">En esta página mostramos productos destacados con imágenes y dos listas: una ordenada por cantidad y otra con los productos más recientes.</p>
+
+  <!-- Featured section with 3 products and images (based on page2.html) -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-6">Productos Destacados</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="border rounded-lg overflow-hidden shadow-sm">
+        <div class="w-full h-40 bg-cover bg-center"
+             style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCIa58tI7JOzqdg8Z183V87LPdwMzMQDMWbQZjo19ixQAUFbvqfH-uXrEnIucrJ0mV-uWM7UeRM7U22jgMl7J3UZAcCgiKYj8lqSADG1OjzBBxDxL-29aoF44TLr8Zn8G-JlpR68uWPxikIY-TFoJ6jNI6SG-Fq5t04vi-JnOQd0Hn_-IX-KHVGAViXGy73AOXKj_axem5xb5RZ307H1irPFVwgCoTDPNgo9iTxYSweITRnl0xpinLaFdRKzTXLhzFup9sEGgy8AHIK");'></div>
+        <div class="p-4">
+          <h3 class="font-medium">Kit de Primeros Auxilios para el Hogar</h3>
+          <p class="text-sm text-gray-500">Suministros esenciales para uso en casa.</p>
+        </div>
+      </div>
+      <div class="border rounded-lg overflow-hidden shadow-sm">
+        <div class="w-full h-40 bg-cover bg-center"
+             style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAPEo9ex3R4FIuaXgN0E1fxqWkXjWrTZNcIdUxFSTfW6Hi5nzgd2WBmfp2l5wxZ6aTYXPGZMoE7YjWw2z-fMuyiBZLpTs75myoMHu9t1Bo9su7flyfdiy48hVIziCePL9F1LiaFX9fEbprvq9sV-w1o1yqGDhyjNKKmWDbNO4EtP_myeHaHIKdxVgITgKSa09wd3ZCduyufXkaWn5W_-EdZO_erOAIbYIYMi3946Dz5uWY3baoaMAg2Af7R8ONfKODwUku4kewEHiJv");'></div>
+        <div class="p-4">
+          <h3 class="font-medium">Kit de Viaje</h3>
+          <p class="text-sm text-gray-500">Compacto y portátil para tus aventuras.</p>
+        </div>
+      </div>
+      <div class="border rounded-lg overflow-hidden shadow-sm">
+        <div class="w-full h-40 bg-cover bg-center"
+             style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCBOgOiCZaw9xjFooizzYRfdUB7bxv7bKRHn-JkTI-_LpWepsRJmU0SmhsBVc1EBBVQieUIJrdBI6z6N1TiTfnngFK-zc3Poh8lyr53Y_k0qCp7exvaLx5mHMOoCj5hov46Nva_3YI_3goJ72HkF0L4ycPxR4IEsJizTQ4XKuj8POCansMKlPRwN9E4eiz5n1or3a19IvdKwmuV4WnD0QvbIL1KDCtCQwRHKz_5tA4RCiqqnJ-xPL2w9IksKVv1xuEeXZH3nVDcYby6");'></div>
+        <div class="p-4">
+          <h3 class="font-medium">Kit para Aventuras al Aire Libre</h3>
+          <p class="text-sm text-gray-500">Ideal para caminatas y campamentos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lists section -->
+  <section>
+    <h2 class="text-2xl font-semibold mb-4">Listas de Productos</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-xl font-medium mb-2">Top 5 por cantidad</h3>
+        @if (topFiveByQuantity.length) {
+          <ol class="list-decimal list-inside space-y-2">
+            @for (med of topFiveByQuantity; track $index) {
+              <li>
+                <span class="font-medium">{{ med.name }}</span>
+                <span class="text-gray-600">— Cantidad: {{ med.quantity }}</span>
+              </li>
+            }
+          </ol>
+        } @else {
+          <p class="text-gray-500">No hay medicamentos registrados aún.</p>
+        }
+      </div>
+
+      <div>
+        <h3 class="text-xl font-medium mb-2">5 más recientes</h3>
+        @if (recentFiveByDate.length) {
+          <ul class="list-disc list-inside space-y-2">
+            @for (med of recentFiveByDate; track $index) {
+              <li>
+                <span class="font-medium">{{ med.name }}</span>
+                <span class="text-gray-600">— Fecha: {{ med.date | date:'mediumDate' }}</span>
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="text-gray-500">No hay medicamentos recientes para mostrar.</p>
+        }
+      </div>
+    </div>
+  </section>
+</div>

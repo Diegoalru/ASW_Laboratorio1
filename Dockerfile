@@ -8,6 +8,7 @@ RUN npm ci --no-audit --no-fund
 
 # Copy the rest of the source and build
 COPY . .
+
 # Build Angular app (production by default per angular.json)
 RUN npm run build
 
@@ -15,11 +16,11 @@ RUN npm run build
 FROM nginx:alpine AS runtime
 
 # Copy built app to Nginx public folder
-# Angular v17+ outputs to dist/<project>/browser by default with @angular/build
-COPY --from=builder /app/dist/Laboratorio1/browser/ /usr/share/nginx/html/
+COPY --from=builder /app/dist/*/browser/ /usr/share/nginx/html/
 
-# Expose port 80
+# Copy custom Nginx config
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
 
-# Default command
 CMD ["nginx", "-g", "daemon off;"]

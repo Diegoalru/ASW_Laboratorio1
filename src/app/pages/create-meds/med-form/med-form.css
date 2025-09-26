@@ -1,0 +1,11 @@
+:host ::placeholder {
+  color: #9CA3AF; /* Tailwind gray-400 */
+  opacity: 1; /* Ensure consistent appearance across browsers */
+}
+
+/* Also cover inputs and textareas explicitly for broader browser support */
+:host input::placeholder,
+:host textarea::placeholder {
+  color: #9CA3AF;
+  opacity: 1;
+}

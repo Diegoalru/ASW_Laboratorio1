@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+/* Custom utility classes */
+@layer utilities {
+  .form-input,
+  .form-select {
+    @apply border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors;
+    box-shadow: none;
+  }
+
+  .form-input::placeholder {
+    @apply text-gray-400;
+    opacity: 1;
+  }
+}
+
+/* Custom theme colors */
+:root {
+  --color-primary: #11a4d4;
+  --color-background-light: #f6f8f8;
+  --color-background-dark: #101d22;
+}
+
+/* Primary color utilities */
+@layer utilities {
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+
+  .bg-background-light {
+    background-color: var(--color-background-light);
+  }
+
+  .hover\:bg-primary\/10:hover {
+    background-color: rgba(17, 164, 212, 0.1);
+  }
+
+  .border-primary\/20 {
+    border-color: rgba(17, 164, 212, 0.2);
+  }
+
+  .border-primary\/10 {
+    border-color: rgba(17, 164, 212, 0.1);
+  }
+
+  .focus\:ring-primary:focus {
+    --tw-ring-color: var(--color-primary);
+  }
+}
