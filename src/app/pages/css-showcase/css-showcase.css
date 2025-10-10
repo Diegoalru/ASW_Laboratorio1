@@ -1,0 +1,188 @@
+/*
+  Archivo de estilos para el componente CSS Showcase.
+  Organizado por:
+  1. Estilos Generales y Layout
+  2. Contenido Principal
+  3. Barra Lateral (Sidebar)
+  4. Pseudo-elementos Globales
+*/
+
+/* --- 1. Estilos Generales y Layout --- */
+.page-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Contenido principal (2/3) y barra lateral (1/3) */
+  gap: 40px;
+  padding: 20px 0;
+}
+
+.main-content, .sidebar {
+  padding: 10px;
+}
+
+/* --- 2. Contenido Principal --- */
+
+/* Punto 4: Efecto de Sombra en Título */
+.main-title {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #101d22;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Punto 1 (Combinador Adyacente): Párrafo que sigue a H1 */
+h1 + p {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* Punto 3 (Pseudo-elemento): Letra capital para el párrafo de introducción */
+.intro-paragraph::first-letter {
+  font-size: 3em;
+  font-weight: bold;
+  float: left;
+  margin-right: 8px;
+  line-height: 0.8;
+  color: #007bff;
+}
+
+/* Punto 5: Transición en Imagen */
+.animated-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  transition: transform 0.5s ease-out, filter 0.5s; /* Transición suave */
+  filter: grayscale(50%); /* Empieza ligeramente en gris */
+}
+
+/* Punto 3 (Pseudo-clase): Hover en la imagen para activar la transición */
+.animated-image:hover {
+  transform: rotate(3deg) scale(1.03);
+  filter: grayscale(0%); /* Vuelve a todo color */
+}
+
+.section-title {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+/* Punto 3 (Pseudo-elemento): Añadir símbolo antes de H2 */
+.section-title::before {
+  content: '► ';
+  color: #007bff;
+}
+
+/* Punto 1 (Combinador General): Párrafos que siguen a H2 */
+h2 ~ p {
+  margin-bottom: 1em;
+}
+
+.essential-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 30px;
+}
+
+.essential-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Punto 3 (Pseudo-clase): Filas con colores alternos en la lista */
+.essential-list li:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Punto 3 (Pseudo-elemento): Viñeta personalizada para los items de la lista */
+.essential-list li::before {
+  content: '✓';
+  margin-right: 10px;
+  color: green;
+  font-weight: bold;
+}
+
+/* --- 3. Barra Lateral (Sidebar) --- */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Punto 4: Efecto de Sombra en Tarjeta */
+.card, .newsletter-form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Punto 1 (Combinador Hijo Directo): Título dentro de la tarjeta */
+.card > h3 {
+  color: #007bff;
+  margin-top: 0;
+}
+
+/* Punto 1 (Combinador Descendiente): Párrafo dentro de la tarjeta */
+.card p {
+  font-size: 0.95em;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Punto 3 (Pseudo-clase): Hover en el botón para efecto de elevación */
+.button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Punto 3 (Pseudo-clase): Enlace visitado (ejemplo) */
+a:visited {
+  /* El color puede variar según el navegador, pero definimos uno custom */
+  color: #5a2d82;
+}
+
+.newsletter-form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+/* Punto 3 (Pseudo-clase): Foco en el input para resaltar el borde */
+.newsletter-form input[type="email"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Punto 3 (Pseudo-elemento): Estilo del placeholder del input */
+.newsletter-form input[type="email"]::placeholder {
+  font-style: italic;
+  color: #aaa;
+}
+
+/* --- 4. Pseudo-elementos Globales --- */
+
+/* Punto 3 (Pseudo-elemento): Estilo del texto seleccionado en toda la página */
+::selection {
+  background-color: #ffdd77; /* Un amarillo para resaltar */
+  color: black;
+}
