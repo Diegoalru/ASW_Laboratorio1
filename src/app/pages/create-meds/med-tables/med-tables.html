@@ -94,3 +94,27 @@
     </div>
   }
 </div>
+
+<!-- Tercera sección: Visualizador JSON -->
+<div class="mt-10">
+  <div class="flex justify-between items-center mb-4">
+    <h3 class="text-xl font-bold">Visualizador JSON en Tiempo Real</h3>
+    <button (click)="exportAsJson()"
+            class="flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200">
+      <span class="material-symbols-outlined">download</span>
+      Exportar a JSON
+    </button>
+  </div>
+
+  @if (medications().length === 0) {
+    <div class="bg-white rounded-xl shadow-sm border border-gray-300 p-8 text-center">
+      <span class="material-symbols-outlined text-4xl text-gray-400 mb-2">code_blocks</span>
+      <p class="text-gray-500">No hay datos para mostrar en JSON.</p>
+      <p class="text-sm text-gray-400">Los datos aparecerán aquí en formato JSON a medida que se agreguen.</p>
+    </div>
+  } @else {
+    <div class="bg-gray-800 rounded-xl shadow-sm border border-gray-700 p-4">
+      <pre class="text-sm text-left text-green-300 whitespace-pre-wrap break-all"><code>{{ medications() | json }}</code></pre>
+    </div>
+  }
+</div>

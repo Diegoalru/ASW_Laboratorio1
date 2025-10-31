@@ -1,5 +1,5 @@
 import {Component, computed, OnDestroy, OnInit, signal} from '@angular/core';
-import {DatePipe} from '@angular/common';
+import {DatePipe, JsonPipe} from '@angular/common';
 import {MedService} from '../../../services/med-service';
 import {CurrencyService} from '../../../services/currency-service';
 import {LocationService} from '../../../services/location-service';
@@ -7,7 +7,7 @@ import {LocationInventory} from '../../../models/location-inventory';
 
 @Component({
   selector: 'app-med-tables',
-  imports: [DatePipe],
+  imports: [DatePipe, JsonPipe],
   templateUrl: './med-tables.html',
   styleUrl: './med-tables.css'
 })
@@ -78,6 +78,20 @@ export class MedTables implements OnInit, OnDestroy {
 
   isInventoryEmpty(): boolean {
     return this.locationInventory().every(inv => inv.totalQuantity === 0);
+  }
+
+  exportAsJson(): void {
+    const meds = this.medService.getAllMeds();
+    const jsonString = JSON.stringify(meds, null, 2);
+    const blob = new Blob([jsonString], {type: 'application/json'});
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'medicamentos.json';
+    a.click();
+
+    window.URL.revokeObjectURL(url);
   }
 
   getStatusClass(status: string): string {
