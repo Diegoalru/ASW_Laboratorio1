@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DatePipe} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MedService} from '../../../services/med-service';
 import {Med} from '../../../models/med';
@@ -8,7 +8,8 @@ import {LocationService} from '../../../services/location-service';
 
 @Component({
   selector: 'app-med-form',
-  imports: [DatePipe, ReactiveFormsModule],
+  standalone: true,
+  imports: [DatePipe, ReactiveFormsModule, CommonModule],
   templateUrl: './med-form.html',
   styleUrl: './med-form.css'
 })

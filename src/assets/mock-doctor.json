@@ -1,0 +1,8 @@
+{
+  "cedula": "1-2345-6789",
+  "nombreCompleto": "Dr. Juan Pérez",
+  "profesion": "Médico Cirujano",
+  "experiencia": 15,
+  "especialidad": "Cardiología",
+  "universidad": "Universidad de Costa Rica"
+}

@@ -1,5 +1,5 @@
 import {Component, computed, OnDestroy, OnInit, signal} from '@angular/core';
-import {DatePipe, JsonPipe} from '@angular/common';
+import {CommonModule, DatePipe, JsonPipe} from '@angular/common';
 import {MedService} from '../../../services/med-service';
 import {CurrencyService} from '../../../services/currency-service';
 import {LocationService} from '../../../services/location-service';
@@ -7,7 +7,8 @@ import {LocationInventory} from '../../../models/location-inventory';
 
 @Component({
   selector: 'app-med-tables',
-  imports: [DatePipe, JsonPipe],
+  standalone: true,
+  imports: [DatePipe, JsonPipe, CommonModule],
   templateUrl: './med-tables.html',
   styleUrl: './med-tables.css'
 })
