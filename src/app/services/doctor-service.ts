@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Doctor} from '../models/doctor';
+import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +9,32 @@ import {Doctor} from '../models/doctor';
 export class DoctorService {
 
   private doctors: Doctor[] = [];
+  private doctorsSubject = new BehaviorSubject<Doctor[]>([]);
+  public doctors$ = this.doctorsSubject.asObservable();
+  private isInitialized = false;
+
+  constructor(private http: HttpClient) {
+    this.loadInitialDoctors();
+  }
+
+  /**
+   * Load initial doctors from a JSON file
+   */
+  private loadInitialDoctors(): void {
+    if (this.isInitialized) return;
+
+    this.http.get<{ doctors: Doctor[] }>('assets/doctors-list.json').subscribe({
+      next: (data) => {
+        this.doctors = [...data.doctors];
+        this.doctorsSubject.next([...this.doctors]);
+        this.isInitialized = true;
+      },
+      error: (err) => {
+        console.error('Error loading initial doctors:', err);
+        this.isInitialized = true;
+      }
+    });
+  }
 
   /**
    * Save a doctor
@@ -16,6 +44,7 @@ export class DoctorService {
     const newId = this.generateId();
     const doctorToSave: Doctor = {...doctor, id: newId};
     this.doctors.push(doctorToSave);
+    this.doctorsSubject.next([...this.doctors]);
   }
 
   /**

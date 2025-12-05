@@ -3,7 +3,6 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {DoctorService} from '../../../services/doctor-service';
 import {Doctor} from '../../../models/doctor';
 import {CommonModule} from '@angular/common';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-doctor-form',
@@ -14,10 +13,12 @@ import {HttpClient} from '@angular/common/http';
 })
 export class DoctorFormComponent implements OnInit {
   private doctorService = inject(DoctorService);
-  private http = inject(HttpClient);
 
   ngOnInit(): void {
-    this.setNextId();
+    // Esperar a que se carguen los doctores del JSON antes de establecer el ID
+    this.doctorService.doctors$.subscribe(() => {
+      this.setNextId();
+    });
   }
 
   private setNextId(): void {
@@ -64,11 +65,21 @@ export class DoctorFormComponent implements OnInit {
 
 
   /**
-   * Carga de JSON
+   * Carga datos del último doctor registrado en el servicio
    */
   loadExampleData(): void {
-    this.http.get<Doctor>('/assets/mock-doctor.json').subscribe(doctor => {
-      this.doctorForm.patchValue(doctor);
-    });
+    const allDoctors = this.doctorService.getAllDoctors();
+    if (allDoctors.length > 0) {
+      const lastDoctor = allDoctors[allDoctors.length - 1];
+      // Cargar datos, pero sin el ID (se generará uno nuevo)
+      this.doctorForm.patchValue({
+        cedula: lastDoctor.cedula,
+        nombreCompleto: lastDoctor.nombreCompleto,
+        profesion: lastDoctor.profesion,
+        experiencia: lastDoctor.experiencia,
+        especialidad: lastDoctor.especialidad,
+        universidad: lastDoctor.universidad
+      });
+    }
   }
 }

@@ -1,0 +1,95 @@
+{
+  "doctors": [
+    {
+      "id": 1,
+      "cedula": "1-2345-6789",
+      "nombreCompleto": "Dr. Juan Pérez",
+      "profesion": "Médico Cirujano",
+      "experiencia": 15,
+      "especialidad": "Cardiología",
+      "universidad": "Universidad de Costa Rica"
+    },
+    {
+      "id": 2,
+      "cedula": "1-9876-5432",
+      "nombreCompleto": "Dra. María González",
+      "profesion": "Médica General",
+      "experiencia": 8,
+      "especialidad": "Medicina General",
+      "universidad": "Universidad de San José"
+    },
+    {
+      "id": 3,
+      "cedula": "1-5555-4444",
+      "nombreCompleto": "Dr. Carlos Rodríguez",
+      "profesion": "Médico Especialista",
+      "experiencia": 12,
+      "especialidad": "Neurología",
+      "universidad": "Universidad Nacional"
+    },
+    {
+      "id": 4,
+      "cedula": "1-7777-8888",
+      "nombreCompleto": "Dra. Ana Martínez",
+      "profesion": "Médica Especialista",
+      "experiencia": 10,
+      "especialidad": "Pediatría",
+      "universidad": "Universidad de Costa Rica"
+    },
+    {
+      "id": 5,
+      "cedula": "1-1111-2222",
+      "nombreCompleto": "Dr. Luis Fernández",
+      "profesion": "Médico Cirujano",
+      "experiencia": 20,
+      "especialidad": "Cirugía General",
+      "universidad": "Universidad Latina"
+    },
+    {
+      "id": 6,
+      "cedula": "1-3333-4444",
+      "nombreCompleto": "Dra. Patricia Sánchez",
+      "profesion": "Médica Especialista",
+      "experiencia": 14,
+      "especialidad": "Dermatología",
+      "universidad": "Universidad de San José"
+    },
+    {
+      "id": 7,
+      "cedula": "1-6666-7777",
+      "nombreCompleto": "Dr. Roberto Díaz",
+      "profesion": "Médico Especialista",
+      "experiencia": 11,
+      "especialidad": "Oftalmología",
+      "universidad": "Universidad Nacional"
+    },
+    {
+      "id": 8,
+      "cedula": "1-9999-1111",
+      "nombreCompleto": "Dra. Sofía López",
+      "profesion": "Médica Especialista",
+      "experiencia": 9,
+      "especialidad": "Ginecología",
+      "universidad": "Universidad de Costa Rica"
+    },
+    {
+      "id": 9,
+      "cedula": "1-2222-3333",
+      "nombreCompleto": "Dr. Miguel Hernández",
+      "profesion": "Médico Especialista",
+      "experiencia": 16,
+      "especialidad": "Oncología",
+      "universidad": "Universidad Latina"
+    },
+    {
+      "id": 10,
+      "cedula": "1-4444-5555",
+      "nombreCompleto": "Dra. Elena Castillo",
+      "profesion": "Médica General",
+      "experiencia": 7,
+      "especialidad": "Medicina Interna",
+      "universidad": "Universidad de San José"
+    }
+  ]
+}
+
